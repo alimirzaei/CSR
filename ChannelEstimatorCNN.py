@@ -28,7 +28,7 @@ class ChannelEstimatorCNN():
 
 
     def getModel(self, input_size):
-        initializer = 'zeros' #'he_normal'
+        initializer = 'he_normal'
         x = Input(shape = input_size+(2, ))
         c1 = Conv2D(64, (6, 4), activation = 'relu', kernel_initializer = initializer , padding='same')(x)
         c2 = Conv2D(32, (1, 1), activation = 'relu', kernel_initializer = initializer, padding='same')(c1)
@@ -36,7 +36,7 @@ class ChannelEstimatorCNN():
         model = Model(x, c3)
         model.summary()
         ##compile
-        adam = Adam(lr=0.0001)#, beta_1=0.9, beta_2=0.999, epsilon=1e-8) 
+        adam = Adam(lr=0.001)#, beta_1=0.9, beta_2=0.999, epsilon=1e-8) 
         model.compile(loss='mse', optimizer=adam)  
         return model
 
